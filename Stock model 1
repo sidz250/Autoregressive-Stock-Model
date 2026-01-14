@@ -1,0 +1,98 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3d9d43fb-75ba-4644-8e71-e1bc5a05444e",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "7cf226d9-d6e2-4a13-b219-5d8235afdf75",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "                            AutoReg Model Results                             \n",
+      "==============================================================================\n",
+      "Dep. Variable:                    RET   No. Observations:                 2517\n",
+      "Model:                     AutoReg(5)   Log Likelihood                6992.095\n",
+      "Method:               Conditional MLE   S.D. of innovations              0.015\n",
+      "Date:                Tue, 30 Sep 2025   AIC                         -13970.190\n",
+      "Time:                        17:57:24   BIC                         -13929.388\n",
+      "Sample:                             5   HQIC                        -13955.381\n",
+      "                                 2517                                         \n",
+      "==============================================================================\n",
+      "                 coef    std err          z      P>|z|      [0.025      0.975]\n",
+      "------------------------------------------------------------------------------\n",
+      "const          0.0004      0.000      1.485      0.138      -0.000       0.001\n",
+      "RET.L1        -0.0419      0.020     -2.102      0.036      -0.081      -0.003\n",
+      "RET.L2         0.0222      0.020      1.113      0.266      -0.017       0.061\n",
+      "RET.L3        -0.0008      0.020     -0.041      0.968      -0.040       0.038\n",
+      "RET.L4        -0.0284      0.020     -1.426      0.154      -0.067       0.011\n",
+      "RET.L5         0.0431      0.020      2.162      0.031       0.004       0.082\n",
+      "                                    Roots                                    \n",
+      "=============================================================================\n",
+      "                  Real          Imaginary           Modulus         Frequency\n",
+      "-----------------------------------------------------------------------------\n",
+      "AR.1           -1.4040           -1.0414j            1.7481           -0.3984\n",
+      "AR.2           -1.4040           +1.0414j            1.7481            0.3984\n",
+      "AR.3            0.7192           -1.7962j            1.9349           -0.1894\n",
+      "AR.4            0.7192           +1.7962j            1.9349            0.1894\n",
+      "AR.5            2.0293           -0.0000j            2.0293           -0.0000\n",
+      "-----------------------------------------------------------------------------\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import statsmodels.api as sm\n",
+    "from statsmodels.tsa.ar_model import AutoReg, ar_select_order\n",
+    "from statsmodels.tsa.api import acf, pacf, graphics \n",
+    "data_path = '/Users/siddhanthnarayanan/Downloads/Code for FINE 3310 group assignment.csv'\n",
+    "t_data = pd.read_csv(data_path)\n",
+    "t_data.describe()\n",
+    "y = t_data.RET\n",
+    "mod = AutoReg(y, 5, old_names=False)\n",
+    "res = mod.fit()\n",
+    "print(res.summary())\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d90ebbd7-1a36-4f20-b498-f80fec7ab2cc",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

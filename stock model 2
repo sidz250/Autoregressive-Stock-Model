@@ -1,0 +1,90 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "9d1a54e1-981d-4a06-8f3f-544db1ba72b7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "                            AutoReg Model Results                             \n",
+      "==============================================================================\n",
+      "Dep. Variable:                    RET   No. Observations:                 2517\n",
+      "Model:                   AutoReg-X(5)   Log Likelihood                7594.724\n",
+      "Method:               Conditional MLE   S.D. of innovations              0.012\n",
+      "Date:                Tue, 30 Sep 2025   AIC                         -15173.448\n",
+      "Time:                        18:15:01   BIC                         -15126.817\n",
+      "Sample:                             5   HQIC                        -15156.523\n",
+      "                                 2517                                         \n",
+      "==============================================================================\n",
+      "                 coef    std err          z      P>|z|      [0.025      0.975]\n",
+      "------------------------------------------------------------------------------\n",
+      "const       2.164e-05      0.000      0.092      0.927      -0.000       0.000\n",
+      "RET.L1         0.0133      0.016      0.847      0.397      -0.018       0.044\n",
+      "RET.L2        -0.0193      0.016     -1.229      0.219      -0.050       0.011\n",
+      "RET.L3        -0.0034      0.016     -0.219      0.827      -0.034       0.027\n",
+      "RET.L4        -0.0086      0.016     -0.548      0.583      -0.039       0.022\n",
+      "RET.L5         0.0197      0.016      1.256      0.209      -0.011       0.050\n",
+      "vwretd         0.8404      0.021     39.329      0.000       0.799       0.882\n",
+      "                                    Roots                                    \n",
+      "=============================================================================\n",
+      "                  Real          Imaginary           Modulus         Frequency\n",
+      "-----------------------------------------------------------------------------\n",
+      "AR.1           -1.6953           -1.3256j            2.1521           -0.3944\n",
+      "AR.2           -1.6953           +1.3256j            2.1521            0.3944\n",
+      "AR.3            0.7448           -2.0333j            2.1655           -0.1941\n",
+      "AR.4            0.7448           +2.0333j            2.1655            0.1941\n",
+      "AR.5            2.3377           -0.0000j            2.3377           -0.0000\n",
+      "-----------------------------------------------------------------------------\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import statsmodels.api as sm\n",
+    "from statsmodels.tsa.ar_model import AutoReg, ar_select_order\n",
+    "from statsmodels.tsa.api import acf, pacf, graphics\n",
+    "data_path = '/Users/siddhanthnarayanan/Downloads/Code for FINE 3310 group assignment.csv'\n",
+    "t_data = pd.read_csv(data_path)\n",
+    "y = t_data.RET\n",
+    "mkt=t_data.vwretd\n",
+    "mod = AutoReg(y, 5, old_names=False, exog=mkt)\n",
+    "res = mod.fit()\n",
+    "print(res.summary())\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4c652a8e-547d-46a5-a0c5-09a16c0bb9a1",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
